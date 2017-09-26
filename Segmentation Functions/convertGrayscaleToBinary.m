@@ -18,10 +18,10 @@ maxDiff = maxValue - meanBorderVal;
 minDiff = meanBorderVal - minValue;
 
 if maxDiff > minDiff % lower values are the page
-    cutoff = mean([maxValue, meanBorderVal]);
+    cutoff = meanBorderVal + (maxValue-minValue)/2;%mean([maxValue, meanBorderVal]);
     binaryImage = (rawImage >= cutoff);
 else % higher values are the page
-    cutoff = mean([minValue, meanBorderVal]);    
+    cutoff = meanBorderVal + (maxValue-minValue)/2;%mean([minValue, meanBorderVal]);    
     binaryImage = (rawImage <= cutoff);
 end
 

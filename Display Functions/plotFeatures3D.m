@@ -15,7 +15,6 @@ numClasses = length(classes);
 % displayNames = cell(numGlyphs,1);
 
 size = 20;
-markerType = '*';
 
 f = figure(figNum);
 cla(f);
@@ -43,7 +42,7 @@ for c=1:numClasses
         colour = class.displayColour;
         displayName = class.displayString;
         
-        scatter3(x,y,z,size,colour,markerType,'displayname',displayName);
+        scatter3(x,y,z,size,colour,class.displayMarkerType,'displayname',displayName);
     end
 end
 
