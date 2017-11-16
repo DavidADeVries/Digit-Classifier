@@ -28,7 +28,7 @@ for r=1:dims(1) % move down rows counting it up
     bottomLeftHalfCount = bottomLeftHalfCount + sum(bottomLeftVals);
 end
 
-symmetry = topRightHalfCount / bottomLeftHalfCount;
+symmetry = topRightHalfCount / prod(dims);
 
 
 end

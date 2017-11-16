@@ -42,14 +42,8 @@ classdef Glyph
         widthAtMiddle
         widthAtBottom
         
-        leftSideContourSwitches
-        rightSideContourSwitches
-
-        leftSideContourMagnitude
-        rightSideContourMagnitude
-        
-        leftSideMaxDepthLocation
-        rightSideMaxDepthLocation
+        leftSideContourVariance
+        rightSideContourVariance
 
         
 %         quad_1v2
@@ -71,6 +65,16 @@ classdef Glyph
         function glyph = Glyph(binaryPixelMap, imageCoords)
             glyph.binaryPixelMap = binaryPixelMap;
             glyph.imageCoords = imageCoords;
+        end
+        
+        function vector = getFeatureVector(glyph, featureList)
+            numFeatures = length(featureList);
+            
+            vector = zeros(1,numFeatures);
+            
+            for i=1:numFeatures
+                vector(i) = glyph.(char(featureList(i)));
+            end
         end
         
         function glyph = extractAndSetFeatures(glyph)
@@ -105,43 +109,9 @@ classdef Glyph
             glyph.widthAtMiddle = extract_WidthAtMiddle(glyph);
             glyph.widthAtBottom = extract_WidthAtBottom(glyph);
             
-            glyph.leftSideContourSwitches = extract_LeftSideContourSwitches(glyph);
-            glyph.rightSideContourSwitches = extract_RightSideContourSwitches(glyph);
+            glyph.leftSideContourVariance = extract_LeftSideContourVariance(glyph);
+        	glyph.rightSideContourVariance = extract_RightSideContourVariance(glyph);
 
-            glyph.leftSideContourMagnitude = extract_LeftSideContourMagnitude(glyph);
-            glyph.rightSideContourMagnitude = extract_RightSideContourMagnitude(glyph);
-            
-            glyph.leftSideMaxDepthLocation = extract_LeftSideMaxDepthLocation(glyph);
-            glyph.rightSideMaxDepthLocation = extract_RightSideMaxDepthLocation(glyph);
-            
-%             [q1, q2, q3, q4] = extract_QuadrantSums(glyph);
-%             
-%             if q1 == 0
-%                 q1 = 1;
-%             end
-%             if q2 == 0
-%                 q2 = 1;
-%             end
-%             if q3 == 0
-%                 q3 = 1;
-%             end
-%             if q4 == 0
-%                 q4 = 1;
-%             end
-%             
-%             glyph.quad_1v2 = q1/q2;
-%             glyph.quad_1v3 = q1/q3;
-%             glyph.quad_1v4 = q1/q4;
-%             glyph.quad_2v3 = q2/q3;
-%             glyph.quad_2v4 = q2/q4;
-%             glyph.quad_3v4 = q3/q4;
-%             glyph.quad_12v34 = (q1+q2)/(q3+q4);
-%             glyph.quad_13v24 = (q1+q3)/(q2+q4);
-%             glyph.quad_14v23 = (q1+q4)/(q2+q3);
-%             glyph.quad_1v234 = q1/(q2+q3+q4);
-%             glyph.quad_2v134 = q2/(q1+q3+q4);
-%             glyph.quad_3v124 = q3/(q2+q1+q4);
-%             glyph.quad_4v123 = q4/(q2+q3+q1);
             
         end
         

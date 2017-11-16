@@ -10,13 +10,13 @@ h = dims(1);
 topHalf_TopY = 1;
 topHalf_BotY = ceil(h/2);
 
-botHalf_TopY = floor(h/2) + 1;
-botHalf_BotY = h;
+%botHalf_TopY = floor(h/2) + 1;
+%botHalf_BotY = h;
 
 topHalf = map(topHalf_TopY:topHalf_BotY,:);
-botHalf = map(botHalf_TopY:botHalf_BotY,:);
+%botHalf = map(botHalf_TopY:botHalf_BotY,:);
 
-verticalSymmetry = sum(sum(topHalf)) / sum(sum(botHalf));
+verticalSymmetry = sum(sum(topHalf)) / sum(sum(map));
 
 
 end

@@ -1,0 +1,60 @@
+function [] = testClassification()
+%[] = testClassification()
+
+size = true;
+italic = true;
+bold = true;
+
+type = 'Train';
+
+testingGlyphs = loadGlyphs(...
+    'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits\Single Font Glyphs\',...
+    type, size, italic, bold);
+
+testingGlyphs = extractFeatures(testingGlyphs);
+
+features = [...
+    Features.numberOfHoles,...
+    Features.holesAreaTop,...
+    Features.holesAreaBottom...
+    ];
+
+k = 1;
+
+classifier = NearestNeighbour(testingGlyphs, k, features);
+
+% CLASSIFY TESTING SET
+
+size = true;
+italic = true;
+bold = true;
+
+type = 'Test';
+
+testingGlyphs = loadGlyphs(...
+    'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits\Single Font Glyphs\',...
+    type, size, italic, bold);
+
+testingGlyphs = extractFeatures(testingGlyphs);
+
+testingGlyphs = classifier.classifyGlyphs(testingGlyphs, features);
+
+classes = [...
+    Classes.zero,...
+    Classes.one...
+    ];
+
+[pCorrect, confusionMatrix] = analyzeClassification(testingGlyphs, classes);
+
+end
+
+% HELPER FUNCTIONS
+function glyphs = extractFeatures(glyphs)
+
+numGlyphs = length(glyphs);
+
+for i=1:numGlyphs
+    glyphs{i} = glyphs{i}.extractAndSetFeatures();
+end
+
+end

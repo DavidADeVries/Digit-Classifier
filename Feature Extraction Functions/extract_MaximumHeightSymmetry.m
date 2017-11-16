@@ -5,7 +5,7 @@ map = glyph.binaryPixelMap;
 
 dims = size(map);
 
-w = dims(2);
+w = dims(1);
 
 leftHalf_LeftX = 1;
 leftHalf_RightX = ceil(w/2);

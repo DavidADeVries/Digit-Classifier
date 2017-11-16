@@ -43,6 +43,7 @@ for i=1:numFiles
     end
 end
 
+table = getTableForGlyphs(glyphs);
 
 end
 
