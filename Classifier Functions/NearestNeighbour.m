@@ -77,10 +77,10 @@ function classification = getClassificationFromNearestNeighbours(neighbours)
             votes(i) = sum(neighbours == classes(i));
         end
         
-        [sortedVotes, sortIndex] = sort(votes);
+        [sortedVotes, sortIndex] = sort(votes, 'descend');
         cutoff = k/2;
         
-        if sortedVotes(1) == sortedVotes(2) || sortedVotes <= cutoff
+        if sortedVotes(1) == sortedVotes(2) %|| sortedVotes(1) <= cutoff
             classification = Classes.reject; % reject if there's a tie, or not a majority vote
         else
             classification = neighbours(sortIndex(1));

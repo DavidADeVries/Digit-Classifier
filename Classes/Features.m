@@ -16,6 +16,9 @@ classdef Features
         holesAreaTop
         holesAreaBottom
         
+        subtractedVerticalSymmetry
+        subtractedHorizontalSymmetry
+        
         verticalSymmetry
         horizontalSymmetry
         topRightBottomLeftSymmetry
@@ -36,8 +39,14 @@ classdef Features
         widthAtMiddle
         widthAtBottom
         
+        topBottomWidthRatio
+        
         leftSideContourVariance       
         rightSideContourVariance
+        totalContourVariance
+        contourVarianceSymmetry
+        
+        perimeterRatio
     end
     
     methods(Static)

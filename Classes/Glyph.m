@@ -27,6 +27,9 @@ classdef Glyph
         topRightBottomLeftSymmetry % num inked px top right half / num inked px bottom left half
         topLeftBottomRightSymmetry % num inked px top left half / num inked px bottom right half
         
+        subtractedVerticalSymmetry
+        subtractedHorizontalSymmetry
+        
         verticalSymmetry2
         
         maximumWidthLocation
@@ -42,8 +45,14 @@ classdef Glyph
         widthAtMiddle
         widthAtBottom
         
+        topBottomWidthRatio
+        
         leftSideContourVariance
         rightSideContourVariance
+        totalContourVariance
+        contourVarianceSymmetry
+        
+        perimeterRatio
 
         
 %         quad_1v2
@@ -94,6 +103,9 @@ classdef Glyph
             glyph.topRightBottomLeftSymmetry = extract_TopRightBottomLeftSymmetry(glyph);
             glyph.topLeftBottomRightSymmetry = extract_TopLeftBottomRightSymmetry(glyph);
             
+            glyph.subtractedVerticalSymmetry = extract_SubtractedVerticalSymmetry(glyph);
+            glyph.subtractedHorizontalSymmetry = extract_SubtractedHorizontalSymmetry(glyph);
+            
             glyph.verticalSymmetry2 = extract_VerticalSymmetry2(glyph);
             
             glyph.maximumWidthLocation = extract_MaximumWidthLocation(glyph);
@@ -109,10 +121,14 @@ classdef Glyph
             glyph.widthAtMiddle = extract_WidthAtMiddle(glyph);
             glyph.widthAtBottom = extract_WidthAtBottom(glyph);
             
+            glyph.topBottomWidthRatio = extract_TopBottomWidthRatio(glyph);
+            
             glyph.leftSideContourVariance = extract_LeftSideContourVariance(glyph);
         	glyph.rightSideContourVariance = extract_RightSideContourVariance(glyph);
+            glyph.totalContourVariance = extract_TotalContourVariance(glyph); 
+            glyph.contourVarianceSymmetry = extract_ContourVarianceSymmetry(glyph);
 
-            
+            glyph.perimeterRatio = extract_PerimeterRatio(glyph);
         end
         
         function glyph = setTrueClass(glyph, class)

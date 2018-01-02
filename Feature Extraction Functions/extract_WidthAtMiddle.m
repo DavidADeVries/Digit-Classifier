@@ -14,7 +14,7 @@ sums = sum(map(middle:middle+numRows-1,:),2);
 
 %sums = sum(map(floor(dims(1)/2),:),2);
 
-ratio = max(sums)/dims(2);
+ratio = mean(sums)/dims(2);
 
 
 
