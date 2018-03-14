@@ -35,9 +35,15 @@ classdef Features
         maximumWidthSymmetry
         maximumHeightSymmetry
         
+        maximumDepthFromLeftTop
+        maximumDepthFromRightTop
+        maximumDepthFromLeftBottom
+        maximumDepthFromRightBottom
+        
         widthAtTop
         widthAtMiddle
         widthAtBottom
+        widthAtTopAndBottomRatio
         
         topBottomWidthRatio
         

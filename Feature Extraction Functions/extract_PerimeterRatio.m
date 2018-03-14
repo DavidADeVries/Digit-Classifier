@@ -23,8 +23,8 @@ for r=2:dims(1)-1
     end
 end
 
-ratio = numExternalPixels/sum(sum(map));
-
+%ratio = numExternalPixels/sum(sum(map));
+ratio = numExternalPixels/prod(dims);
 
 
 end

@@ -41,9 +41,15 @@ classdef Glyph
         maximumWidthSymmetry
         maximumHeightSymmetry
         
+        maximumDepthFromLeftTop
+        maximumDepthFromRightTop
+        maximumDepthFromLeftBottom
+        maximumDepthFromRightBottom
+        
         widthAtTop
         widthAtMiddle
         widthAtBottom
+        widthAtTopAndBottomRatio
         
         topBottomWidthRatio
         
@@ -117,9 +123,15 @@ classdef Glyph
             glyph.maximumWidthSymmetry = extract_MaximumWidthSymmetry(glyph);
             glyph.maximumHeightSymmetry = extract_MaximumHeightSymmetry(glyph);
             
+            glyph.maximumDepthFromLeftTop = extract_MaximumDepthFromLeftTop(glyph);
+            glyph.maximumDepthFromRightTop = extract_MaximumDepthFromRightTop(glyph);
+            glyph.maximumDepthFromLeftBottom = extract_MaximumDepthFromLeftBottom(glyph);
+            glyph.maximumDepthFromRightBottom = extract_MaximumDepthFromRightBottom(glyph);
+            
             glyph.widthAtTop = extract_WidthAtTop(glyph);
             glyph.widthAtMiddle = extract_WidthAtMiddle(glyph);
             glyph.widthAtBottom = extract_WidthAtBottom(glyph);
+            glyph.widthAtTopAndBottomRatio = extract_WidthAtTopAndBottomRatio(glyph);
             
             glyph.topBottomWidthRatio = extract_TopBottomWidthRatio(glyph);
             

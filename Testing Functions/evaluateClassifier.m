@@ -1,28 +1,25 @@
-function [] = testClassification()
-%[] = testClassification()
-
-size = true;
-italic = true;
-bold = true;
-multiFont = true;
+function [pCorrect, confusionMatrix] = evaluateClassifier(k, size, italic, bold, multipleFonts, evaluateFinal)
+%[pCorrect, confusionMatrix] = evaluateClassifier(k, size, italic, bold, multipleFonts, evaluateFinal)
 
 type = 'Train';
 
 testingGlyphs = loadGlyphs(...
     'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits',...
-    type, size, italic, bold, multiFont);
+    type, size, italic, bold, multipleFonts);
 
 testingGlyphs = extractFeatures(testingGlyphs);
 
-% type = 'Test';
-% 
-% moreTestingGlyphs = loadGlyphs(...
-%     'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits\Multiple Fonts Glyphs\',...
-%     type, size, italic, bold);
-% 
-% moreTestingGlyphs = extractFeatures(moreTestingGlyphs);
-% 
-% testingGlyphs = [testingGlyphs; moreTestingGlyphs];
+if evaluateFinal
+    type = 'Test';
+    
+    moreTestingGlyphs = loadGlyphs(...
+        'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits',...
+        type, size, italic, bold, multipleFonts);
+    
+    moreTestingGlyphs = extractFeatures(moreTestingGlyphs);
+    
+    testingGlyphs = [testingGlyphs; moreTestingGlyphs];
+end
 
 features = [...
     Features.aspectRatio,...
@@ -51,8 +48,6 @@ features = [...
 
 features = features(true & [1 0 0 1 0 0 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1]);
 
-k = 1;
-
 classifier = NearestNeighbour(testingGlyphs, k, features);
 
 % CLASSIFY TESTING SET
@@ -60,13 +55,16 @@ classifier = NearestNeighbour(testingGlyphs, k, features);
 size = true;
 italic = true;
 bold = true;
-multiFont = true;
 
-type = 'Test';
+if evaluateFinal
+    type = 'Final';
+else
+    type = 'Test';
+end
 
 testingGlyphs = loadGlyphs(...
-    'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits\',...
-    type, size, italic, bold, multiFont);
+    'C:\Users\David\OneDrive\Master''s Year 1\CSIC 859\Classifer Project\My Digits',...
+    type, size, italic, bold, multipleFonts);
 
 testingGlyphs = extractFeatures(testingGlyphs);
 
@@ -87,8 +85,6 @@ classes = [...
 
 [pCorrect, confusionMatrix] = analyzeClassification(testingGlyphs, classes);
 
-disp(['%: ', num2str(pCorrect)]);
-disp(confusionMatrix);
 end
 
 % HELPER FUNCTIONS

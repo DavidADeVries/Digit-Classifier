@@ -26,7 +26,7 @@ for i=1:length(glyphs)
     holesArea = holesArea + glyph.getInkedArea();
 end
 
-holesAreaRatio = holesArea ./ prod(dims);
+holesAreaRatio = holesArea ./ (prod(dims) / 2);
 
 end
 
